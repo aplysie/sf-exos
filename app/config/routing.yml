@@ -1,0 +1,4 @@
+organization:
+    resource: "@OrganizationBundle/Controller/"
+    type:     annotation
+    prefix:   /

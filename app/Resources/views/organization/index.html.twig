@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+        <h1>Organization list</h1>
+
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Name</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for organization in pagination %}
+                <tr>
+                    <td><a href="{{ path('organization_user_index', { 'organizationId': organization.id }) }}">{{ organization.id }}</a></td>
+                    <td>{{ organization.name }}</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+        <div>
+            <ul class="pagination">
+                {% if paginationData.previousPage %}
+                <li>
+                    <a href="?page={{ paginationData.previousPage }}"><<< previous</a>
+                </li>
+                {% endif %}
+                {% for i in 0..paginationData.pages %}
+                <li class="{{ (i + 1) == paginationData.currentPage ? 'active' : '' }}">
+                    <a href="?page={{ i + 1 }}">{{ i + 1 }}</a>
+                </li>
+                {% endfor %}
+                {% if paginationData.nextPage %}
+                    <li>
+                        <a href="?page={{ paginationData.nextPage }}">next >>></a>
+                    </li>
+                {% endif %}
+            </ul>
+        </div>
+{% endblock %}
